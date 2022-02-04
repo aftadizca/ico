@@ -21,6 +21,7 @@ bottom64 = 'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAAsTAAALEwEA
 top_img = BytesIO(base64.b64decode(top64))
 bottom_img = BytesIO(base64.b64decode(bottom64))
 
+# exclude folder with name "[number]. xxx"
 list_folder_parent = [x for x in parent.iterdir() if x.is_dir(
 ) and not x.name[0].isnumeric() and not x.name[1] == "."]
 
@@ -54,12 +55,19 @@ def icon_generator(top_img, img_target, bottom_img):
 
 
 for i in list_folder_parent:
-    print(i.name)
+    symbol = "◇"
+    start= ""
+    end = ""
     icon_jpg_path = pathlib.Path(i, "icon.jpg")
     icon_ico_path = pathlib.Path(i, "a.ico")
 
     if not icon_jpg_path.exists():
+        symbol = "◈"
+        start = '\033[1m';
+        end = '\033[0m';
         getImg(i.name, i)
     
     icon_generator(top_img, icon_jpg_path, bottom_img)
+
+    print(symbol," ",start+i.name+end)
     
