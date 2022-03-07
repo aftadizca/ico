@@ -8,9 +8,9 @@ import base64
 import os
 
 init()
-parent = pathlib.Path('D:\KOLEKSI\ANIME_NEW')
+# parent = pathlib.Path('D:\KOLEKSI\ANIME_NEW')
 # parent = pathlib.Path('D:\\PROGRAMMING\\ico\\test')
-# parent = pathlib.Path(os.getcwd())
+parent = pathlib.Path(os.getcwd())
 
 url = 'https://graphql.anilist.co'
 query = 'query ($search: String){ Media(search: $search, type:ANIME) { id coverImage{extraLarge} title{romaji} }}'
